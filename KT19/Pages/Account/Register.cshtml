@@ -1,0 +1,29 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="card auth-card">
+    <h1>Регистрация</h1>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="error"></div>
+
+        <label asp-for="Input.UserName"></label>
+        <input asp-for="Input.UserName" autocomplete="username" autofocus />
+        <span asp-validation-for="Input.UserName" class="error"></span>
+
+        <label asp-for="Input.Password"></label>
+        <input asp-for="Input.Password" autocomplete="new-password" />
+        <span asp-validation-for="Input.Password" class="error"></span>
+
+        <label asp-for="Input.ConfirmPassword"></label>
+        <input asp-for="Input.ConfirmPassword" autocomplete="new-password" />
+        <span asp-validation-for="Input.ConfirmPassword" class="error"></span>
+
+        <button type="submit" class="btn">Создать аккаунт</button>
+    </form>
+
+    <p class="muted">Уже есть аккаунт? <a asp-page="Login">Войти</a></p>
+</div>

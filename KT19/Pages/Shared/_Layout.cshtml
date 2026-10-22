@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] — KT19</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" asp-page="/Index">KT19</a>
+        <nav>
+            <a asp-page="/Index">Главная</a>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a asp-page="/Chat">Чат</a>
+                <span class="spacer"></span>
+                <span class="whoami">@User.Identity.Name</span>
+                <form method="post" asp-page="/Account/Logout" class="inline">
+                    <button type="submit" class="link-btn">Выйти</button>
+                </form>
+            }
+            else
+            {
+                <span class="spacer"></span>
+                <a asp-page="/Account/Login">Вход</a>
+                <a asp-page="/Account/Register">Регистрация</a>
+            }
+        </nav>
+    </header>
+
+    <main class="container">
+        @RenderBody()
+    </main>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

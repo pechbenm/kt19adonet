@@ -1,0 +1,23 @@
+@page
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="card">
+    <h1>KT19 — защищённый чат</h1>
+    <p>Приложение на ASP.NET Core: аутентификация по куки, регистрация и вход,
+       чат в реальном времени на SignalR. Чат доступен только авторизованным пользователям.</p>
+
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <p>Вы вошли как <strong>@User.Identity.Name</strong>.</p>
+        <a class="btn" asp-page="/Chat">Перейти в чат</a>
+    }
+    else
+    {
+        <p>
+            <a class="btn" asp-page="/Account/Login">Войти</a>
+            <a class="btn btn-secondary" asp-page="/Account/Register">Зарегистрироваться</a>
+        </p>
+    }
+</div>

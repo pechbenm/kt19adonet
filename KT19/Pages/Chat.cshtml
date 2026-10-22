@@ -1,0 +1,29 @@
+@page
+@model ChatModel
+@{
+    ViewData["Title"] = "Чат";
+}
+
+<h1>Чат</h1>
+
+<div id="chat" class="chat" data-user="@User.Identity!.Name">
+    <section class="chat__main">
+        <div id="status" class="chat__status">Подключение…</div>
+        <ul id="messages" class="chat__messages" aria-live="polite"></ul>
+        <form id="send-form" class="chat__form" autocomplete="off">
+            <input id="message-input" type="text" maxlength="500" placeholder="Введите сообщение…" required disabled />
+            <button id="send-btn" type="submit" class="btn" disabled>Отправить</button>
+        </form>
+        <div id="error" class="error" role="alert"></div>
+    </section>
+
+    <aside class="chat__users">
+        <h2>Онлайн (<span id="users-count">0</span>)</h2>
+        <ul id="users"></ul>
+    </aside>
+</div>
+
+@section Scripts {
+    <script src="~/lib/signalr/signalr.min.js"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+}
